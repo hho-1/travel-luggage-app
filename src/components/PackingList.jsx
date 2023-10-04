@@ -1,7 +1,7 @@
 import React from 'react'
 import { PackItem } from './PackItem'
 
-export const PackingList = ({needsList, onDelete}) => {
+export const PackingList = ({needsList, onDelete, onRemove}) => {
 
   return (
     <div className='list'>
@@ -17,7 +17,7 @@ export const PackingList = ({needsList, onDelete}) => {
               <option value="">Sort by description</option>
               <option value="">Sort by packed status</option>
             </select>
-            <button>Clear List</button>
+            <button onClick={onRemove}>Clear List</button>
         </div>
     </div>
     

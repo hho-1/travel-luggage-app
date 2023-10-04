@@ -21,12 +21,14 @@ function App() {
         }
     ];
     setNeedsList(createdItems)
+    
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     createItem(needsName, amount)
+    
   }
 
   const handleDelete = (id) => {
@@ -36,11 +38,15 @@ function App() {
     setNeedsList(remainedItems)
   }
 
+  function handleRemoveAll () {
+    setNeedsList([])
+  }
+
   return (
     <div className="app">
       <h1>✈️ FAR AWAY 🏝️</h1>
       <AddForm setAmount = {setAmount} setNeedsName = {setNeedsName} handleSubmit= {handleSubmit}/>
-      <PackingList needsList = {needsList} onDelete={handleDelete}/>
+      <PackingList needsList = {needsList} onDelete={handleDelete} onRemove={handleRemoveAll}/>
       <Footer needsList = {needsList}/>
     </div>
   );
