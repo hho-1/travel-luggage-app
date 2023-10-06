@@ -11,13 +11,20 @@ function App() {
   const [needsName, setNeedsName] = useState("")
 
   const [needsList, setNeedsList] = useState([])
+  const [numberOfChecked, setNumberOfChecked] = useState(0)
+
+  const [percent, setPercent] = useState(0)
+
+  //const [isChecked, setIsChecked] = useState(false)
+
 
   const createItem = (needsName, amount) => {
     const createdItems = [
         ...needsList, {
             name: needsName,
             quantity: amount,
-            id: Math.floor(Math.random() * 999999999)
+            id: Math.floor(Math.random() * 999999999),
+            
         }
     ];
     setNeedsList(createdItems)
@@ -28,7 +35,7 @@ function App() {
     e.preventDefault()
 
     createItem(needsName, amount)
-    
+    //setPercent((percent, numberOfChecked, needsList) => percent = Math.floor(numberOfChecked / (needsList?.length) * 100))
   }
 
   const handleDelete = (id) => {
@@ -42,12 +49,13 @@ function App() {
     setNeedsList([])
   }
 
+
   return (
     <div className="app">
       <h1>✈️ FAR AWAY 🏝️</h1>
       <AddForm setAmount = {setAmount} setNeedsName = {setNeedsName} handleSubmit= {handleSubmit}/>
-      <PackingList needsList = {needsList} onDelete={handleDelete} onRemove={handleRemoveAll}/>
-      <Footer needsList = {needsList}/>
+      <PackingList needsList = {needsList} onDelete={handleDelete} onRemove={handleRemoveAll} numberOfChecked={numberOfChecked} setNumberOfChecked={setNumberOfChecked} setPercent={setPercent} percent={percent}/>
+      <Footer needsList = {needsList} numberOfChecked = {numberOfChecked} percent = {percent}/>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React from 'react'
 export const AddForm = ({setAmount, setNeedsName, handleSubmit}) => {
     const numbers = []
 
-    for(let i = 1; i <= 400; i++){
+    for(let i = 1; i <= 40; i++){
         numbers.push(i)
     }
 
