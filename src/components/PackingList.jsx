@@ -1,7 +1,7 @@
 import React from 'react'
 import { PackItem } from './PackItem'
 
-export const PackingList = ({needsList, onDelete, onRemove, numberOfChecked, setNumberOfChecked, setPercent, percent}) => {
+export const PackingList = ({needsList, onDelete, onRemove, numberOfChecked, setNumberOfChecked, setPercent, percent, checkedList, setCheckedList}) => {
 
   //const [isChecked, setIsChecked] = useState(false)
 
@@ -10,7 +10,7 @@ export const PackingList = ({needsList, onDelete, onRemove, numberOfChecked, set
     <div className='list'>
         <ul>
             {needsList.map((item) => (
-                <li key={item.id}><PackItem item = {item} onDelete={onDelete} numberOfChecked={numberOfChecked} setNumberOfChecked={setNumberOfChecked} needsList = {needsList} setPercent={setPercent} percent={percent}/></li>
+                <li key={item.id}><PackItem item = {item} onDelete={onDelete} numberOfChecked={numberOfChecked} setNumberOfChecked={setNumberOfChecked} needsList = {needsList} setPercent={setPercent} percent={percent}  setCheckedList={setCheckedList} checkedList={checkedList}/></li>
             ))
 }
         </ul>
