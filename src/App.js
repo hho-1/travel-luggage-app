@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 
 function App() {
 
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(1)
   const [needsName, setNeedsName] = useState("")
 
   const [needsList, setNeedsList] = useState([])
@@ -29,7 +29,7 @@ function App() {
         }
     ];
     setNeedsList(createdItems)
-    
+    console.log(needsList);
   }
   
 
@@ -37,7 +37,10 @@ function App() {
     e.preventDefault()
 
     createItem(needsName, amount)
-    setPercent((percent, checkedList, needsList) => percent = Math.floor(checkedList?.length / (needsList?.length) * 100))
+    setPercent((percent) => percent = Math.floor(Number(checkedList.length / needsList.length) * 100))
+
+    setNeedsName('')
+    setAmount(1)
   }
 
   const handleDelete = (id) => {
@@ -55,7 +58,7 @@ function App() {
   return (
     <div className="app">
       <h1>✈️ FAR AWAY 🏝️</h1>
-      <AddForm setAmount = {setAmount} setNeedsName = {setNeedsName} handleSubmit= {handleSubmit}/>
+      <AddForm amount={amount} setAmount = {setAmount} setNeedsName = {setNeedsName} handleSubmit= {handleSubmit} needsName={needsName}/>
       <PackingList needsList = {needsList} onDelete={handleDelete} onRemove={handleRemoveAll} numberOfChecked={numberOfChecked} setNumberOfChecked={setNumberOfChecked} setPercent={setPercent} percent={percent} setCheckedList={setCheckedList} checkedList={checkedList}/>
       <Footer needsList = {needsList} checkedList={checkedList} percent = {percent}/>
     </div>
