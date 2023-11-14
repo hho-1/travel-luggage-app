@@ -1,16 +1,15 @@
 import React from 'react'
 import { PackItem } from './PackItem'
 
-export const PackingList = ({needsList, onDelete, onRemove, numberOfChecked, setNumberOfChecked, setPercent, percent, checkedList, setCheckedList}) => {
+export const PackingList = ({needsList, onDelete, onRemove, numberOfChecked, setNumberOfChecked, setPercent}) => {
 
-  //const [isChecked, setIsChecked] = useState(false)
 
 
   return (
     <div className='list'>
         <ul>
             {needsList.map((item) => (
-                <li key={item.id}><PackItem item = {item} onDelete={onDelete} numberOfChecked={numberOfChecked} setNumberOfChecked={setNumberOfChecked} needsList = {needsList} setPercent={setPercent} percent={percent}  setCheckedList={setCheckedList} checkedList={checkedList}/></li>
+                <li key={item.id}><PackItem item = {item} onDelete={onDelete} numberOfChecked={numberOfChecked} setNumberOfChecked={setNumberOfChecked} needsList = {needsList} setPercent={setPercent}/></li>
             ))
 }
         </ul>

@@ -1,41 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-export const PackItem = ({item, onDelete, setNumberOfChecked,numberOfChecked, needsList, setPercent, percent,  checkedList, setCheckedList}) => {
+export const PackItem = ({item, onDelete, setNumberOfChecked, setPercent, numberOfChecked, needsList}) => {
 
   const [isChecked, setIsChecked] = useState(false)
   
+  
+  useEffect(() => {
+  
+    if (!isChecked) {
+      setNumberOfChecked((prevCount) => {
+        if (prevCount !== 0) {
+          return prevCount - 1;
+        }
 
-  const checkItem = (item) => {
-    const createdChecks = [
-        ...checkedList, item
-    ];
-    setCheckedList(createdChecks)
-    console.log(checkedList);
-
-    if((checkedList.length === 0) || needsList.length === 0) {
-      setPercent(percent => percent = 0)
+        return prevCount;
+      });
     }
-    else {
-      setPercent((percent)=> percent = Math.floor((checkedList && checkedList.length) / (needsList && needsList.length) * 100))
+
+    if (isChecked) {
+      setNumberOfChecked((prevCount) => prevCount + 1);
     }
     
-  }
-  const handleCheck = (e) => {
-    if(isChecked){
-      console.log(e.target.value);
-      checkItem(item)
-      setIsChecked(isChecked)
-    }
-    else{
-      setCheckedList(checkedList && checkedList.pop())
+  }, [isChecked, setNumberOfChecked]);
+
+  
+  
+
+  const handleCheck = () => {
+    
       setIsChecked(!isChecked)
-    }
+      
+      setPercent((percent) => percent = Math.floor(Number(numberOfChecked / needsList.length) * 100))
+    
   }
   
 
   return (
     <>
-      <input type='checkbox' id={item.id} value={isChecked} onChange={()=>handleCheck()}/>
+      <input type='checkbox' id={item.id} checked={isChecked} onChange={handleCheck}/>
       <label htmlFor={item.id} > {isChecked ? <s>{item.quantity} {item.name}</s> : <p>{item.quantity} {item.name}</p> }  </label>
       <button onClick={()=>onDelete(item.id)}>&#x274C;</button>
     </>
